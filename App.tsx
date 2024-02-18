@@ -64,7 +64,7 @@ function generateSectionListFromSongData(songData: SongInfo[], sortBy: keyof Son
         }
     }
 
-    sectionedSongs.map((s) => s.data = [...s.data].sort((a, b) => sortSongData(a, b, "title", "asc")))
+    sectionedSongs.map((s) => s.data = [...s.data].sort((a, b) => sortSongData(a, b, "title", order)))
 
     return sectionedSongs
 }
@@ -73,10 +73,12 @@ function sortSongData(a: SongInfo, b: SongInfo, by: keyof SongInfo, order: "asc"
     switch (order) {
         case "asc":
             if (a[by] < b[by]) return -1
-            else return 1
+            else if (a[by] > b[by]) return 1
+            else return 0
         case "desc":
             if (a[by] < b[by]) return 1
-            else return -1
+            else if (a[by] > b[by]) return -1
+            else return 0
     }
 }
 
