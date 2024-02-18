@@ -64,6 +64,8 @@ function generateSectionListFromSongData(songData: SongInfo[], sortBy: keyof Son
         }
     }
 
+    sectionedSongs.map((s) => s.data = [...s.data].sort((a, b) => sortSongData(a, b, "title", "asc")))
+
     return sectionedSongs
 }
 
